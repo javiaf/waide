@@ -1,0 +1,20 @@
+{
+    "version":"1.0",
+    "feeds":[
+        {
+            "name": "CNN World",
+            "url": "http://rss.cnn.com/rss/cnn_world.rss"
+        },        
+        {
+            "name":"The Local Spain",
+            "url": "https://feeds.thelocal.com/rss/es"
+        },{
+           "name": "Google News",
+           "url": "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US:en" 
+        }
+    ],
+    "defaultFeed": {
+        "name": "CNN World",
+        "url": "http://rss.cnn.com/rss/cnn_world.rss"
+    }
+}

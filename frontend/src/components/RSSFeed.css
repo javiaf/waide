@@ -1,0 +1,162 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  font-family: Arial, sans-serif;
+}
+
+.rss-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.rss-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.step-indicator div {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background-color: #eee;
+  font-weight: bold;
+  color: #666;
+}
+
+.step-indicator .active {
+  background-color: #007acc;
+  color: white;
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-group {
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.control-group label {
+  font-weight: bold;
+  color: #444;
+}
+
+.control-group select,
+.control-group input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fdfdfd;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+  border-color: #007acc;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.control-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.control-actions button {
+  padding: 0.6rem 1.2rem;
+  background-color: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.control-actions button:hover:not(:disabled) {
+  background-color: #005fa3;
+}
+
+.control-actions button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.importance.critical {
+  background-color: #c20000;
+  color: white;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.importance.high {
+  background-color: #ffdddd;
+  color: #b00020;
+  font-weight: bold;
+}
+
+.importance.medium {
+  background-color: #fff6cc;
+  color: #b36b00;
+}
+
+.importance.low {
+  background-color: #ddffdd;
+  color: #228822;
+}
+
+.rss-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.rss-table th,
+.rss-table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.rss-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+}
+
+.rss-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.rss-logo {
+  height: 250px;
+  width: auto;
+}

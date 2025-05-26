@@ -1,0 +1,20 @@
+{
+    "clientId": "--",
+    "clientSecret": "---",
+    "gc_region": "eu_central_1",
+    "httpPort": 4000,
+    "extragroups":{
+        "Finance": "4d76d927-e48d-42aa-b205-10d2f320575f",
+        "Disaster": "59206905-c07c-493b-922e-bf28f7cca90d",
+        "Environment": "76e508f9-54a4-4378-81b0-a63e4ba4ab02"
+    },
+    "severity":{
+        "CRITICAL":1,
+        "HIGH": 0.7,
+        "MEDIUM":0.3
+    }
+        
+        
+        
+
+}
