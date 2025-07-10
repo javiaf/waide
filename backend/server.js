@@ -23,6 +23,8 @@ const client = platformClient.ApiClient.instance;
 
 let queues = [];
 
+let defaultGroup;
+
 app.use(cors());
 app.use(express.json());
 
@@ -70,6 +72,12 @@ app.post('/api/extragroup', async (req, res) => {
       return res.status(400).json({ error: 'Category does not exist in the config' });
     }*/
    // await getGroupUsers(groupId);
+      let groupId = config.extragroups[category];
+      if(groupId){
+        await getGroupUserList(groupId);
+      }
+      
+
     await addQueueMembers(severity, queueId);
     res.json(members);
   } catch (error) {
@@ -268,7 +276,8 @@ function init() {
     .then(async () => {
       // Do authenticated things
       await getRoutingQueues();
-      await getGroupUserList("4d76d927-e48d-42aa-b205-10d2f320575f");
+      defaultGroup = config.extragroups["Default"] | "4d76d927-e48d-42aa-b205-10d2f320575f";
+      await getGroupUserList(defaultGroup);
       console.log('retrived GC objects')
       let PORT = process.env.PORT || config.httpPort
 

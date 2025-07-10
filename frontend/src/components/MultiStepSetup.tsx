@@ -75,10 +75,11 @@ const MultiStepSetup: React.FC = () => {
       importance,
       mode,
       action: actionType,
-      target: actionTarget
+      target: actionTarget,
+      status: "PENDING"
     }]);
 
-      if (category === 'International Relationships' && importance === 'CRITICAL' && actionType === 'queue') {
+      if (category === 'International Relationshipss' && importance === 'CRITICAL' && actionType === 'queue') {
     try {
       const res =await fetch(`${BACKEND_URL}/api/extragroup`, {
         method: 'POST',
@@ -100,6 +101,41 @@ const MultiStepSetup: React.FC = () => {
 
     setStep(3);
   };
+
+useEffect(() => {
+  if (step !== 3) return;
+
+  newsItems.forEach(news => {
+    events.forEach(event => {
+      if (
+        event.action === 'queue' &&
+        event.category === news.topic &&
+        event.importance === news.importance &&
+        event.location === news.location &&
+        event.status !== 'COMPLETED'
+      ) {
+        fetch(`${BACKEND_URL}/api/extragroup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            category: event.category,
+            severity: event.importance,
+            queueId: event.target
+          })
+        })
+        .then(res => {
+          if (res.ok) {
+            alert(`🚨 New members added to queue "${queues.find(q => q.id === event.target)?.name || event.target}" due to ${event.importance} alert: ${news.title}`)
+            event.status = "COMPLETED"
+          }
+        })
+        .catch(err => {
+          console.error('Failed to dispatch extragroup alert:', err);
+        });
+      }
+    });
+  });
+}, [step]);
 
   return (
     <div className="rss-container">
@@ -238,18 +274,20 @@ const MultiStepSetup: React.FC = () => {
                   <th>Mode</th>
                   <th>Action</th>
                   <th>Target</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 {events.map((evt, idx) => (
                   <tr key={idx}>
-                    <td>{evt.feed}</td>
+                    <td>{feeds.find(f => f.url === evt.feed)?.name || "News Source"}</td>
                     <td>{evt.category}</td>
                     <td>{evt.location}</td>
                     <td>{evt.importance}</td>
                     <td>{evt.mode}</td>
-                    <td>{evt.action}</td>
-                    <td>{evt.target}</td>
+                    <td>{evt.action=="queue"?"Adding Agents to Queue": "Play Prompt"}</td>
+                    <td>{queues.find(q => q.id === evt.target)?.name || evt.target}</td>
+                    <td>{evt.status}</td>
                   </tr>
                 ))}
               </tbody>
@@ -258,7 +296,10 @@ const MultiStepSetup: React.FC = () => {
       <button onClick={() => setStep(1)}>➕ Add New</button>
     </div>
           </>
-        )}
+        )
+        
+        
+        }
       </div>
     </div>
   );
